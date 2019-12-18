@@ -1,0 +1,38 @@
+.sweepPadding {
+	padding-top:1px!important;
+	padding-bottom:1px!important
+}
+
+.khaTopColor {
+	color:#fff!important;
+	background-color:#63187c!important
+}
+
+.w3-pale-dab {
+background-color:#f6ddff!important
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #63187c25;
+}
+
+.omegachad {
+	text-decoration: line-through;
+}
+
+.shadow {
+  text-shadow: 2px 2px 4px #7e429346;
+}

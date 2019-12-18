@@ -1,0 +1,33 @@
+import java.util.Arrays;
+/**
+ * An implementation for the bubble sort algorithm
+ * @author Duncan
+ * @since 99-99-99
+ */
+public class Sorter
+{
+   /**
+    * sorts an integer array in non-decreasing order
+    * @para data an array of integers
+    */
+   public static void bubbleSort(int[] data)
+   {
+      int temp, partitionIndex = data.length - 1, i;
+      boolean notFinished;
+      do
+      {
+         notFinished = false;
+         for (i = 0; i < partitionIndex; i++)
+         {
+            if (data[i] > data[i+1])
+            {
+               temp = data[i];
+               data[i] = data[i+1];
+               data[i+1] = temp;
+               notFinished = true;               
+            }
+         }
+         partitionIndex--;
+     }while(notFinished);
+   }
+}

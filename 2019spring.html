@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!--
+	Kha's Personal LSU Website
+-->
+<html lang="en">
+<title>Kha's LSU Page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="default.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: Arial, Helvetica, sans-serif;}
+.w3-bar,h1,button {font-family: Arial, Helvetica, sans-serif;}
+.fa-anchor,.fa-coffee {font-size:200px}
+.w3-white,.w3-hover-white:hover{color:#63187c!important;background-color:#fffefb!important}
+.cool-cool:hover{color:#63187c!important;background-color:#cab5d1!important}
+.chad{color:#63187c!important}
+.chad:hover{color:#9a6baa!important}
+</style>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar khaTopColor w3-card w3-left-align w3-large">
+		<a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-large w3-white cool-cool" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="index.html" class="w3-bar-item w3-button w3-padding-large w3-white cool-cool">Home</a>
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+		<a href="index.html" class="w3-bar-item w3-button w3-padding-large cool-cool">Home</a>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="w3-container w3-pale-dab w3-center" style="padding:64px 0px 16px 0px">
+	<a href="index.html"><img class="w3-margin w3-jumbo w3-hide-large w3-hide-medium" style="width: 90%" src="images/khaLSULogo.png" /></a>
+	<a href="index.html"><img class="w3-margin w3-jumbo w3-hide-small" style="width: 35%" src="images/khaLSULogo.png" /></a>
+</header>
+
+<!-- First Grid -->
+<div class="w3-row-padding w3-padding-32 w3-container">
+  <div class="w3-content">
+    <h1>\(\text{2019 Spring Semester}\)</h1>
+      <h5 class="w3-text-grey">\(\text{A. Class A}\)</h5>
+      <table>
+        <tr>
+          <td><a class="chad">Syllabus</a></td>
+          <td><a href="" target="_blank">Click A1</a></td>
+        </tr>
+      </table>
+      <br />
+      <h5 class="w3-text-grey">\(\text{B. Class B}\)</h5>
+      <table>
+        <tr>
+          <td><a class="chad">Syllabus</a></td>
+          <td><a href="" target="_blank">Click B1</a></td>
+        </tr>
+      </table>
+      <br />
+      <h5 class="w3-text-grey">\(\text{C. Class C}\)</h5>
+      <table>
+        <tr>
+          <td><a class="chad">Syllabus</a></td>
+          <td><a href="" target="_blank">Click C1</a></td>
+        </tr>
+      </table>
+      <br />
+      <h5 class="w3-text-grey">\(\text{D. Class D}\)</h5>
+      <table>
+        <tr>
+          <td><a class="chad">Syllabus</a></td>
+          <td><a href="" target="_blank">Click D1</a></td>
+        </tr>
+      </table>
+      <br />
+      <h5 class="w3-text-grey">\(\text{E. Class E}\)</h5>
+      <table>
+        <tr>
+          <td><a class="chad">Syllabus</a></td>
+          <td><a href="" target="_blank">Click E1</a></td>
+        </tr>
+      </table>
+      <br />
+  </div>
+</div>
+
+<!-- Second Grid -->
+<div class="w3-container w3-black w3-center w3-opacity sweepPadding">
+    <h1 class="w3-margin w3-xlarge"><em>baton rouge mathematician: man i sure love polyneauxmials</em></h1>
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-32 w3-center w3-opacity">  
+ <p>Kha Le</p>
+</footer>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+<script>
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+
+</body>
+</html>
