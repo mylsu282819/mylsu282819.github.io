@@ -1,0 +1,195 @@
+The code below illustrates the use of a priority queue defined in
+the standard Java 8 API. For intrinsic classes, the compareTo method
+defined in the class is used as the comparator. For a user-defined
+class, we can define a customized comparator in the class - the 
+class may implement the Comparable interface. Alternatively, we can
+define an external class that implements the Comparator interface, 
+a comparator of an anonymous class or a lambda comparator function.
+
+/** 
+ * A demo program that illustrates the use of a 
+ * priority queue from the Java 8 API and a customized
+ * comparator that is used to determine where an elements
+ * is inserted in the queue.
+ * @author Duncan
+ * @since 99-99-9999
+ */
+package pqueuedemo;
+
+import java.util.Comparator;
+import java.util.PriorityQueue; 
+
+public class PQueueDemo 
+{
+   /**
+    * A user-defined class that describes a town
+    */
+   private static class Town
+   {
+      /**
+       * the name of the town
+       */   
+      private String name;
+      /**
+       * the population of the town
+       */	  
+      private int population;
+      /**
+       * creates a town
+       */        
+      public Town(String n, int p)
+      {
+          name = n;
+          population = p;
+      }
+      /**
+       * gives the name of this town
+       * @return the name of this town
+       */	  
+      public String getName()
+      {
+          return name;
+      }
+      /**
+       * gives the population of this town
+       * @return the population of this town
+       */	  
+      public int getPopulation()
+      {
+          return population;
+      }
+      /**
+       * Modifies information about this town
+       * @param n the new name of this town
+       * @param p the new population of this town	   
+       */	  
+      public void setName(String n, int p)
+      {
+          name = n;
+          population = p;
+      }
+      /**
+       * Gives a string representation of the name and
+       * population of this town.
+       * @return a formatted string representing the name
+       * and population of this town
+       */
+      public String toString()
+      {
+	     return String.format("%-40s %d",name, population);
+      }		 
+   }
+    
+   public static void main(String[] args) 
+   {
+      //Creating a comparator of an anonymous class
+      Comparator<Town> cmp = (t1, t2) -> 
+      {
+         int d = t1.getName().compareTo(t2.getName());
+         if (d < 0)
+             return -1;
+         if (d > 0)
+             return 1;
+         d = t1.getPopulation() - t2.getPopulation();
+         if (d < 0)
+             return -1;
+         if (d > 0)
+             return 1;
+         return 0;           
+      };
+      //Defining an instance of the PriorityQueue class that uses the comparator
+      PriorityQueue<Town> pQueue = new PriorityQueue(cmp);
+      pQueue.add(new Town("Knoxville",37919));		
+      pQueue.add(new Town("Baton Rouge",70802));
+      pQueue.add(new Town("Knoxville",37996));
+      pQueue.add(new Town("Chattanooga",37415));
+      pQueue.add(new Town("Baltimore",21234));
+      Town town;
+      while(!pQueue.isEmpty())
+      {
+          town = pQueue.poll();
+          System.out.printf("%s%n",town);
+      }
+   }   
+}
+
+Some algorithms require the modification of entries while preserving some
+order in the data structure. We cannot perform an in-place modification of
+entries in a priority queue. Even though a priority queue in Java is iterable, 
+any attempt to use an iterator to modify an entry in a priority queue will 
+lead to a ConcurrentModificationException. Although, we can remove any entry, 
+not just the top-most entry, from the standard Java library priority queue 
+implementation, removing an item then modifying it and adding it back to the 
+queue is computationally expensive.
+
+One could conceivably define a subclass of priority_queue and extend its 
+behavior. That may be a good exercise to undertake in an OOP design course.
+However, we do not want to wander too far afield from our main objective
+for the programming component of this this course: writing programs that 
+enhance our understanding of how the data structures work. Getting bugged
+down into broader OOP design issues such as inheritance may take away from, 
+rather than further, this objective.
+
+As mentioned before, one way to modify an item is by first removing the item, 
+then modifying it and adding it back on the priority queue. This is relatively 
+computationally expensive. An alternate hack is to add an entry that represents 
+the "modified" version of the item on the priority queue and via bookkeeping 
+make the original/unmodified item obsolete. In this case, whenever pop is 
+called, if the item is obsolete it can be removed from the priority queue and 
+ignored until a valid entry gets to the top of the priority queue. This is at 
+times referred to as "lazy deletion" in data structures programming jargon. 
+I will provide additional hints on lazy deletion during the lectures. We will 
+use this approach when simulating the "decrease key" operation for the 
+binary-heap based implementation of Prim's minimum spanning tree algorithm or
+Dijkstra's single-source shortest path algorithm.
+
+As a side note, there is a data structure called the Fibonacci heap, that 
+efficiently implements the decrease-key operation. So in theory, it should
+give the best performance when a priority queue is implemented using it. 
+However, in practice, due to additional overhead that is incurred in its use, 
+the binary heap based implementation of a priority queue gives a better 
+performance. Fibonacci heaps are usually studied in an advanced algorithms course.
+
+Using the Standard Java HashMap
+A map is an associative array; each of its entries is a key-value pair.
+
+/**
+ * A demo program that illustrates the use of the generic HashMap
+ * class in standard java.util package. The program does a 
+ * frequency count of letters in a line of text.
+ * @author Duncan
+ * @since 99-99-**
+ */
+
+package letterfrequencycounter;
+
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Map;
+import java.util.Scanner;
+
+public class LetterFrequencyCounter
+{
+    public static void main(String[] args) 
+    {
+        Scanner cin = new Scanner(System.in);
+        System.out.print("Enter one line of text -> ");
+        String text = cin.nextLine().toUpperCase();
+        Map<Character,Integer> letFreq = new HashMap();
+        char ch;
+        for (int i = 0; i < text.length(); i++)
+        {
+           ch = text.charAt(i);
+           if (Character.isAlphabetic(ch))
+           {
+              if (letFreq.containsKey(ch))
+                 letFreq.put(ch, letFreq.get(ch)+1);
+              else
+                 letFreq.put(ch, 1);			  
+           }
+        }
+        System.out.println("Symbol-Frequency Table");
+        for(Character key: letFreq.keySet())
+           System.out.printf("%10c -> %2d%n",key,letFreq.get(key));
+    }
+}
