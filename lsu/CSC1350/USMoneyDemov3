@@ -1,0 +1,33 @@
+package usmoneydemo;
+
+/**
+ * A test bed for the USMoney implementation
+ * @author Duncan
+ * @since 99-99-999
+ * @see USMoney
+ * @version 3 test the USMoney class with constructors
+ */
+public class USMoneyDemo 
+{
+    public static void main(String[] args) 
+    {
+        USMoney penny = new USMoney();
+        System.out.printf("The first amount is %s.%n",penny);
+        USMoney five = new USMoney(5);
+        USMoney ten2 = new USMoney(10.02);
+        ten2.setUSMoney(five.getDollars()+5, ten2.getCents()+2);
+        System.out.printf("The first amount is %s.%n",five);
+        System.out.printf("The second amount is %s.%n",ten2);
+        System.out.printf("Are %s and %s equal? %b%n",five,ten2,five.equals(ten2));
+
+        USMoney secondFive = new USMoney(five);		
+        System.out.printf("The is another %s.%n",secondFive);        
+        System.out.printf("Are %s and %s equal? %b%n",secondFive,five,secondFive.equals(five));
+
+        USMoney junk = new USMoney(4.3752);
+        System.out.printf("Junk amount is %s.%n",junk);
+        junk.setUSMoney(-5,75);
+        System.out.printf("Junk amount is %s.%n",junk);
+    }
+    
+}

@@ -1,0 +1,42 @@
+package searcherdemo;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+/**
+ * A test bed for the implementation of the binary and linearSearch
+ * search algorithms
+ * @author Duncan
+ * @since 99-99-9999
+ * @see Searcher 
+ */
+public class SearcherDemo 
+{
+    public static void main(String[] args) 
+    {
+        int[] list = {5,4, 32, 6,4,6,5};
+        Scanner cin = new Scanner(System.in);
+		System.out.printf("data: %s%n",Arrays.toString(list));
+        System.out.print("Enter an integer search key to perform linear search -> ");
+        int searchKey = cin.nextInt();
+        int pos = Searcher.linearSearch(list, searchKey);
+        if (pos >= 0)
+            System.out.printf("%d is first found at position %d in %s.%n",searchKey,pos,Arrays.toString(list));
+        else
+            System.out.printf("%d is not in %s.%n",searchKey,Arrays.toString(list));
+        System.out.println();
+        int data[] = {1, 3, 5, 7, 7, 11, 13, 15, 17, 19, 23};
+		System.out.printf("data: %s%n",Arrays.toString(data));
+        System.out.print("Enter an integer search key to perform binary search -> ");
+        searchKey = cin.nextInt();
+        pos = Searcher.binarySearch(data,searchKey);
+        if (pos >= 0)
+            System.out.printf("%d was found at %d in %s.%n",searchKey,pos,Arrays.toString(data));
+        else
+        {
+            System.out.printf("%d was not found in %s.%n",searchKey, Arrays.toString(data));
+            System.out.printf("The insertion position of %d in %s is %d.%n",searchKey,Arrays.toString(data),-(pos+1));
+        }
+    }
+    
+}

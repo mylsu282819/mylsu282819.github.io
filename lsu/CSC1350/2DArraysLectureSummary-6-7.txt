@@ -1,0 +1,103 @@
+Summary of 2-D Arrays Lecture (6.7):
+
+-Constructing a 2-D Arrays
+ * dataType[][] arrayName = new dataType[numRows][numCols];
+ * 2-D arrays use zero-based indexing: the index of the first
+   row is 0 and the index of the first column is 0. When numeric
+   arrays are constructed, their elements are initialized to zeroes,
+   boolean arrays are initialized to false, object arrays are initialized
+   to null, character arrays are initialized to ' ', etc.
+ 
+   eg: int[][] table = new int[3][4];
+       *Creates a 4x3 (3 rows and 4 columns) array of integers with 
+	   each element initialized to 0 until they are overwritten.
+	   
+	   char[][] ticTacToe = new char[3][3];
+	   *Creates a 3x3 (3 rows and 3 columns) array of characters with 
+	   each element initialized to ''.
+	   
+-Initializing a 2-D Array at Run-time
+ eg: table[0][1] = 5;
+     * assigns 5 to the element on the first row, second column. 
+	 table[2][3] = 9;
+	 * assigns 9 to the element on the third row, fourth column. 
+   
+-Constructing and Initializing a 2-D Array at Compile-time
+ *dataType[][] arrayName = {{list of elements on first row}, 
+                            {list of elements on second row}, ..., };
+							
+   eg: double[][] salaries = {{4250.00, 3750.35, 5478.50},
+                              {5487.25, 6500.78, 4578.95},
+							  {7857.62, 9857.25, 6523.54}
+							  {5423.35, 5478.25, 9852.66}};
+  *Creates a 4 x 3 array of doubles.
+  
+-2D Array Dimensions
+
+ arrayName.length - an expression of the number of rows that the array has.
+ arrayName[i].length - an expression of the number of elements on the ith row.
+
+-Traversing a 2D Array
+ Typically a nested loop, usually a nested for loop, a used to access all the 
+ elements of an array in some order. 
+ 
+ eg:
+ 
+ 
+ char[][] board = {{'A', 'B', 'C'},
+                   {'D', 'E', 'F'},
+				   {'G', 'H', 'I'}};
+int i, j:
+for (i = board.length-1; i >= 0; i--)
+{
+   for (j = 0; j < board[i]; j++)
+   {
+      System.out.printf("%-3c",board[i][j]);
+   }
+   System.out.println();
+}
+
+Output:
+
+G  H  I
+D  E  F
+A  B  C
+
+-Staggered 2-D Array
+ A staggered array is an array in which the rows have different lengths.
+ *Creating an initializing a staggered array at compile-time:
+ 
+ String[][] stairCase = {{"[X]"},
+                         {"[X]","[X]"},
+						 {"[X]","[X]","[X]"},
+                         {"[X]","[X]","[X]","[X]"}};
+						 
+ *Alternatively, we can always create a staggered array at run-time:
+  String[][] stairCase = new String[4][1];
+  stairCase[0] = new String[1];
+  stairCase[1] = new String[2];
+  stairCase[2] = new String[3];
+  stairCase[3] = new String[4]'
+  stairCase[0][1] = "[X]";
+  stairCase[1][0] = "[X]";
+  stairCase[1][1] = "[X]";
+  stairCase[2][0] = "[X]";
+  stairCase[2][1] = "[X]";
+  stairCase[2][2] = "[X]";
+  stairCase[3][0] = "[X]";
+  stairCase[3][1] = "[X]";
+  stairCase[3][2] = "[X]";
+  stairCase[3][3] = "[X]";
+
+-Generating a String-representation of a 2-D Array:
+ * Use Arrays.deepToString(arrayName)
+
+eg: System.out.println(Arrays.deepToString(board));
+	displays - [[A, B, C], [D, E, F], [G, H, I]]
+    System.out.println(Arrays.deepToString(stairCase)); 
+    displays - [[[X]], [[X], [X]], [[X], [X], [X]], [[X], [X], [X], [X]]]
+	
+ 
+  
+  
+						 

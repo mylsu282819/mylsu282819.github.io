@@ -1,0 +1,130 @@
+Programming Tips # 2
+
+1. A generic type is a type with a parameter. The type parameter
+   is specialized at run time.
+   eg: Pair<U,V> indicates that Pair is a class with two type parameters.
+   Pair<String, Integer> pair = new Pair(); 
+   An object of the Pair class is instantiated with the first type parameter
+   replaced with String and the second with Integer. The concrete type for a
+   generic type in Java must be an object type. All Java primitive types have
+   wrapper types - so-called autoboxing:
+   int -> Integer, double -> Double, char -> Character, boolean -> Boolean, etc.
+   
+2. Very often when programming and using arrays, one may not know in advance 
+   what the length of the array should be. Rather than declare a static array
+   with an arbitrarily large size and hope for the best, you are
+   better off using an extensible array. The application can then manage memory 
+   more efficiently via dynamic memory allocation.
+   
+   The Java library has a generic extensible array called an ArrayList
+   in the java.util package. ArrayLists come in handy when the need for
+   an extensible array, queue or stack arises. We will use array lists in the 
+   implementation of many data structures in this course.
+   
+   See details on the use of ArrayList<E> class at this url:
+   http://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html
+   
+
+   package arraylistdemo;
+
+   import java.util.ArrayList;
+   import java.util.Iterator;
+
+   public class ArrayListDemo 
+   {
+      public static void main(String[] args) 
+      {
+         ArrayList<Integer> oneToFive = new ArrayList();
+         for (int i = 1; i < 6; i++)
+            oneToFive.add(i);    //puts 1 2 3 4 5 in the list
+         for (int i : oneToFive)   //prints elements using a for-each loop
+            System.out.printf("%d ",i); //prints elements
+         System.out.println();
+         //uses an iterator to print elements
+         for (Iterator<Integer> it = oneToFive.iterator(); it.hasNext();) 
+            System.out.printf("%d ",it.next());
+         System.out.println();
+         for (int i = oneToFive.size()-1; i >= 0; i--)
+            System.out.printf("%d ",oneToFive.get(i)); //prints elements in reverse
+         System.out.println();	  
+         //Deletes all the elements of this array list:
+         while (!oneToFive.isEmpty())
+         {
+            System.out.printf("%d is being removed.%n",oneToFive.remove(0));
+         }
+       }   
+   }
+         
+3. Inputs, especially ones that serve as parameters that you wish to tune with
+   runs of a program, can be entered as command line tokens.
+   
+   The parameter args is an array that contains the string representation of 
+   tokens.
+   
+   args[0] is the first token, args[1], the second token, etc.
+   
+   If you are using Netbeans, to enter command line tokens, right click the
+   project node in the left pane. Select 'properties' from the pop-up menu.
+   Click 'run' option in the left pane of the dialog box and then type the
+   command line arguments in the text field next to the label 'arguments'. 
+   Type the tokens separated by whitespaces. Then click 'ok' to close the 
+   the 'properties' window. You can now run your program and the tokens will 
+   be accessible in the program as elements of the args array. Each elements
+   of the args array is a string.
+   
+   package argstesterdemo;
+
+   public class ArgsTesterDemo 
+   {
+      public static void main(String[] args) 
+      {
+         System.out.printf("There were %d command line arguments.%n",args.length);
+         String uni = args[0];
+         int num1 = Integer.parseInt(args[1]);
+         double num2 = Double.parseDouble(args[2]); 
+         System.out.printf("My university is %s.%n",uni);
+         System.out.printf("%d + %f = %f%n",num1,num2,num1+num2);
+      }   
+   }
+    
+   
+   If 'ArgsTesterDemo' is run with these tokens:
+   LSU 3 4.5
+   The output would be:
+   There were 3 command line argments.
+   My university is LSU.
+   3 + 4.500000 = 7.500000
+   
+4. Some Java standard library methods:
+
+   Integer.parseInt - converts a string to its equivalent integer. 
+		  
+   eg: string s = "310";
+       int num = Integer.parseInt(s);  
+
+   Double.parseDouble - converts a string to its equivalent double. 
+		  
+   eg: string sDbl = "4.5";
+       double dbl = Double.parseDouble(sDbl);  
+	   
+   split(delimiter) - Creates an array of strings using the specified delimiter.
+   
+   eg: String s = "1250350450";
+       String[] str = s.split("0"); // str - {"125", "35", "45"}
+	   
+       s.indexOf(p) - gives the zero-based index of the first occurrence of the pattern string
+                      p in the host string s. It returns -1 if the pattern is not in the host.
+
+   eg: String s = "1250350450";
+       int pos = s.index("0"); // pos is 3 after this statement.  
+   
+       s.substring(startIndex,endIndex+1) - returns the sub-string that begins at startIndex and
+                                            ends at endIndex. When the second argument is omitted,
+                                            it returns the sub-string that starts at startIndex and
+                                            ends at the end of s.
+								
+   eg: String s = "1250350450";
+       System.out.println(s.substring(4,6)); //displays 35
+       s = s.substring(7);
+       System.out.println(s); //displays 450
+   

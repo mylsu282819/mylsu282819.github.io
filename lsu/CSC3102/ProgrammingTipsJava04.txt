@@ -1,0 +1,249 @@
+The Java API has sort methods, that can be used to sort an array (Arrays.sort)
+containing primitive objects or user-defined object types or an array list 
+(Collections.sort). These methods use the quick sort algorithm on primitive type 
+and merge sort on object types or some combination of these algorithms. To use 
+these methods, your program must include the java.util package. To illustrate 
+the use of the sort method, a program called SortDemo is defined below. The class 
+contains a simple class FullName, creates an array of FullName objects and then 
+sorts the array using the Arrays.sort method. To use the sort method, the FullName 
+private class implements the generic Comparable interface - it defines a trichotomous 
+comparison method that is used by the sort method when comparing FullName objects 
+in the array.
+
+Do not implement your own sort method when you need to sort an array or an array
+list since it will likely not take advantage of some compiler optimizations that 
+the standard Java API sort() methods exploit. Your user-defined sort function is 
+likely to be several orders of magnitude slower than the the standard sort() methods.
+
+Both Arrays.sort and Collections.sort can take a second argument representing an
+object of a class, anonymous or otherwise, that implement the parametric 
+Comparator interface. The comparator of that class, rather than the natural ordering
+defined in the class, is then used to compare the items as they are sorted. This
+comes in handy when sorting objects of a class that does not implement the Comparable
+or Comparator interface or when one does not wish to use the natural ordering that
+is defined in the class.
+
+/**
+ * A demo program to illustrate the use of the Array.sort (for arrays)
+ * and Collections.sort (for array lists) methods in the Java API
+ * @author Duncan
+ * @since 99-99-9999
+ */
+
+import java.util.*;
+
+public class SortDemo
+{
+   /**
+    * A simple class to store the names of individuals
+    */
+   private static class FullName implements Comparable<FullName>
+   {
+      /**
+       * a person's first name.
+       */	   
+      private String firstName;
+      /**
+       * a person's last name.
+       */	 
+      private String lastName;
+      /**
+       * creates a default object of this class
+       */	   
+      public FullName()
+      {
+         firstName ="Unknown";
+         lastName = "Unknown";
+      }
+      /**
+       * creates an object of this class using
+       * the specified parameters.
+       * @param first the first name
+       * @param last the last name
+       */
+      public FullName(String first, String last)
+      {
+         firstName = first;
+         lastName = last;
+      }
+
+      /**
+       * Gives the first name
+       * @return the first name of this object
+       */	  
+      public String getFirstName()
+      {
+         return firstName;
+      }
+      /**
+       * Gives the last name
+       * @return the last name of this object
+       */	
+      public String getLastName()
+      {
+         return lastName;
+      }
+	  
+      /**
+       * compares this FullName with the specified FullName.
+       * @param other a FullName object
+       * @return 1 if this FullName comes after the specified
+       * FullName, 0 if the FullName objects are the same, 
+       * -1, otherwise.
+       */
+      public int compareTo(FullName other)
+      {
+         if (getLastName().compareTo(other.getLastName()) < 0)
+            return -1;
+         if (getLastName().compareTo(other.getLastName()) > 0)
+            return 1;
+         if (getFirstName().compareTo(other.getFirstName()) < 0)
+            return -1;
+         if (getFirstName().compareTo(other.getFirstName()) > 0)
+            return 1;
+         return 0;	  
+      }	  
+   }
+
+   public static void main(String[] args)
+   {
+      //This segment of the code illustrate the use of Arrays.sort().
+      //to sort an array whose elements belong to a class that implements
+      //either the Comparable or Comparator interface.
+	  
+      FullName roster1[] = {new FullName("Susan","Brown"), new FullName("Benjamin","Samuels"), 
+                           new FullName("Jacqueline","Harris"), new FullName("Adelphia","Manning"), 
+                           new FullName("Zachary","Allison")};
+
+      System.out.println();
+      System.out.println("Names in an Array");
+      System.out.println("Unsorted Names:");
+      System.out.println("-------------------------");
+      int i;
+      for (i = 0; i < roster1.length; i++)
+         System.out.printf("%s, %s%n",roster1[i].getLastName(),roster1[i].getFirstName()); 
+      System.out.println();
+      System.out.println();
+      Arrays.sort(roster1);
+      System.out.println("Sorted Names:");
+      System.out.println("-------------------------");
+      for (i = 0; i < roster1.length; i++)
+         System.out.printf("%s, %s%n",roster1[i].getLastName(),roster1[i].getFirstName()); 
+      System.out.println();
+
+      //This segment of the code illustrate the use of Collections.sort().
+      //to sort an ArrayList whose elements belong to a class that implements
+      //either the Comparable or Comparator interface.
+      
+      ArrayList<FullName> roster2 = new ArrayList();
+      roster2.add(new FullName("Susan","Brown"));
+      roster2.add(new FullName("Benjamin","Samuels"));
+      roster2.add(new FullName("Jacqueline","Harris"));
+      roster2.add(new FullName("Adelphia","Manning"));
+      roster2.add(new FullName("Zachary","Allison"));
+
+      System.out.println();
+      System.out.println("Names in an ArrayList");
+      System.out.println("Unsorted Names:");
+      System.out.println("-------------------------");
+      for (i = 0; i < roster2.size(); i++)
+         System.out.printf("%s, %s%n",roster2.get(i).getLastName(),roster2.get(i).getFirstName()); 
+      System.out.println();
+      System.out.println();
+      Collections.sort(roster2);
+      System.out.println("Sorted Names:");
+      System.out.println("-------------------------");
+      for (i = 0; i < roster2.size(); i++)
+         System.out.printf("%s, %s%n",roster2.get(i).getLastName(),roster2.get(i).getFirstName());  
+      System.out.println();	  
+      
+      //This segment of the code illustrate the use of Collections.sort().
+      //to sort an ArrayList using the comparator of an object of an 
+      //anonymous class.
+      
+      ArrayList<FullName> roster3 = new ArrayList();
+      roster3.add(new FullName("Susan","Brown"));
+      roster3.add(new FullName("Benjamin","Samuels"));
+      roster3.add(new FullName("Jacqueline","Harris"));
+      roster3.add(new FullName("Adelphia","Manning"));
+      roster3.add(new FullName("Zachary","Allison"));    
+      
+      System.out.println();
+      System.out.println("Names in an ArrayList");
+      System.out.println("Unsorted Names:");
+      System.out.println("-------------------------");
+      for (i = 0; i < roster3.size(); i++)
+         System.out.printf("%s, %s%n",roster3.get(i).getLastName(),roster3.get(i).getFirstName()); 
+      System.out.println();
+      System.out.println();      
+      
+      Comparator<FullName> cmp = (name1,name2) ->
+      {
+         if (name1.getLastName().compareTo(name2.getLastName()) < 0)
+            return -1;
+         if (name1.getLastName().compareTo(name2.getLastName()) > 0)
+            return 1;
+         if (name1.getFirstName().compareTo(name2.getFirstName()) < 0)
+            return -1;
+         if (name1.getFirstName().compareTo(name2.getFirstName()) > 0)
+            return 1;
+         return 0;	  
+      };
+      //Note: One could use the right-side of the assignment statement
+      //above and avoid the declaration of the cmp variable.	  
+      Collections.sort(roster3,cmp);
+      System.out.println("Sorted Names Using an External Comparator:");
+      System.out.println("------------------------------------------");
+      for (i = 0; i < roster3.size(); i++)
+         System.out.printf("%s, %s%n",roster3.get(i).getLastName(),roster3.get(i).getFirstName());  
+      System.out.println();	
+      
+      //This segment of the code illustrate the use of Arrays.sort().
+      //to sort an array in a different order, first name then last name, 
+      //using the comparator of an object of an external anonymous class.
+      
+      
+      FullName roster4[] = {new FullName("Susan","Brown"), new FullName("Benjamin","Samuels"), 
+                           new FullName("Jacqueline","Harris"), new FullName("Adelphia","Manning"), 
+                           new FullName("Zachary","Allison")};
+      
+      System.out.println();
+      System.out.println("Names in an ArrayList");
+      System.out.println("Unsorted Names:");
+      System.out.println("-------------------------");
+      for (i = 0; i < roster4.length; i++)
+         System.out.printf("%s, %s%n",roster4[i].getLastName(),roster4[i].getFirstName()); 
+      System.out.println();
+      System.out.println();      
+      
+      Comparator<FullName> cmp2 = (name1,name2) ->
+      {
+         if (name1.getFirstName().compareTo(name2.getFirstName()) < 0)
+            return -1;
+         if (name1.getFirstName().compareTo(name2.getFirstName()) > 0)
+            return 1;          
+         if (name1.getLastName().compareTo(name2.getLastName()) < 0)
+            return -1;
+         if (name1.getLastName().compareTo(name2.getLastName()) > 0)
+            return 1;
+         return 0;	  
+      };
+      Arrays.sort(roster4,cmp2);
+      System.out.println("Sorted Names by First then Last Name Using an External Comparator:");
+      System.out.println("------------------------------------------------------------------");
+      for (i = 0; i < roster4.length; i++)
+         System.out.printf("%s, %s%n",roster4[i].getLastName(),roster4[i].getFirstName()); 
+      System.out.println();			  
+   }
+}   
+
+
+How to remove leading and trailing whitespace characters (that is " " and tabs)
+from a string:
+
+String text = "     Hello, World!      ";
+System.out.prinf("Original string: %s%n",text);   //printing untrimmed text                  
+System.out.prinf("Trimmed string: %s%n",text.trim());   //printing trimmed text    
+
+To remove an element from an array list: arrayListRef.remove(index).
+This call returns the item that is removed.

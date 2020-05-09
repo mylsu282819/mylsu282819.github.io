@@ -1,0 +1,44 @@
+1) Start EA
+
+2) The "License Management" window will appear
+
+3) Click "Add a Key"
+
+4) Click "Get Shared Key"
+
+5) Click the "..." button to the right of "Shared Keystore"
+
+6) Click the "Sparx Keystore Server" radial button
+
+7) Enter the Server Address as: wins.cse.lsu.edu
+
+8) Verify that protcol is "ssks://" and other fields are left blank
+
+9) Click "Test" button then "OK" twice if settings were good
+
+10) Select Product "EA Academic Edition" and press "OK"
+
+11) Press Close
+
+12) Enterprise Architect will open and you'll be asked to agree to the EULA
+
+13) If you agree, enter code "YMC9" click the confirming box and press "OK"
+
+14) You wiill need to repeat this if you switch to a new computer
+
+
+
+
+TROUBLESHOOTING:
+
+If you are on a computer previously registered by Dr. Aymond, you might need
+to release the old key.  If the License Manager appears with the old key
+visible, highlight it and choose "Release Key".  Then follow the steps above.
+
+You can also open license manager from the menu.  Click the "Start" tab of
+the ribbon menu (near the top left), then click the "Register" button which
+is in the help section on the right of the Start ribbon menu.
+
+
+
+
