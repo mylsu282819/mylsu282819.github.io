@@ -1,0 +1,182 @@
+===================================================================
+Slide set # 1: SLIDE 44: ITS 
+----------------------------
+
+Many ground-breaking games and software packages were created here,
+even though in my opinion the command interpreter seems designed to
+drive people out of their minds.
+
+Under Kali:
+
+cd /root/SIMH-machines/PDP-10/its
+./start vt52
+its
+<ESC>-G
+<CTRL>-Z to login in vt52 screen
+:login golden
+:tctyp aaa             sets terminal type to vt100 (of course)
+
+:peek                  like top for Unix!
+
+:games;trek           equiv to /games/trek
+
+:games;ocm
+
+:wumpus
+
+<CONTROL-Z is <CONTROL>-C
+
+TO LEAVE:
+
+:logout
+:lock
+5down
+<CONTROL>-\
+exit
+
+
+===================================================================
+Slide set # 1: SLIDE 48:  TOPS-20
+---------------------------------
+
+Under Kali:
+
+# cd /root/SIMH-machines/PDP-10/TOPS-20/panda-dist
+# ./klt20
+GO
+^M at the BOOT> prompt
+Why reload? OTHER
+Run CHECKD? N
+
+<wait until text scrolling stops>
+
+^C to login
+LOGIN golden
+password is 9korner9
+
+Best to use a terminal with exactly 80x24 lines.
+
+You can edit files with emacs!
+
+K&R C, not ANSI C.
+
+cc to compile
+exe to run
+
+BASIC and SYSTEM to exit
+
+Games:  HAUNT, ZORK, many others
+
+Shutting down:
+CONTROL-\
+QUIT then confirm with "y".
+
+
+===================================================================
+Slide set # 1: SLIDE 56: Multics
+--------------------------------
+
+Under Kali:
+
+# cd /root/SIMH-machines/Multics/QuickStart_MR12.6f
+# dps8 MR12.6f_boot.ini
+
+Then:  # telnet localhost 6180
+
+Then:
+
+l Golden    (case-sensitive!)
+9korner9
+
+pr blarg.basic         (print)
+ls                     (as in Unix)
+delete instead of rm
+basic blarg.basic to run
+
+pr hello.cobol
+hello$HELLO to execute (name of segment $ entry point)
+
+logout to exit
+ ^E and exit from console
+ 
+
+===================================================================
+Slide set # 1: SLIDE 62: Unix v7 
+--------------------------------
+
+Under Kali: 
+
+# cd /root/SIMH-machines/PDP-11/unixv7 
+# pdp11 
+do boot-unix
+
+Follow on-screen prompts
+
+^D to enter multiuser mode
+
+Then root/root to login
+
+DELETE key is <CONTROL>-C!
+<CONTROL>-D is <CONTROL>-C       :)
+
+sync sync sync sync before shutting down.
+
+<CONTROL>-E to exit the simulation.
+
+
+===================================================================
+Slide set # 1: SLIDE 72: Paper Tape Basic on PDP/11
+---------------------------------------------------
+Under Kali: 
+
+# cd /root/SIMH-machines/PDP-11/PAPER-TAPE-BASIC
+# pdp11 
+do load-paper-basic
+
+Then telnet localhost 6969
+
+NO LOWERCASE CHARS ALLOWED!
+
+===================================================================
+
+Slide set # 1: SLIDE 79: ALTAIR running CP/M 
+--------------------------------------------
+
+Very popular OS on 8080 and Z-80-based micros.  Trivia: Not unlikely
+that your HP calculator uses a Z80--they are still in wide use.
+
+# cd /root/SIMH-machines/Altair8800/psaltair/cpm2
+# altairz80 cpm2
+
+A: and B: drives
+
+MBASIC is on drive A:
+
+
+===================================================================
+Slide set # 1: SLIDE 95: MS-DOS VM 
+----------------------------------
+
+Before showing WIN, show early version of Microsoft Word (WORD.EXE)
+
+GWBASIC to run basic programs
+
+SYSTEM to exit
+
+
+===================================================================
+Slide set # 1: SLIDE 99: Windows 3.11 
+-------------------------------------
+	
+WIN to load Windows 
+Applications, Microsoft QBASIC 
+SYSTEM to exit
+
+
+===================================================================
+Slide set # 1: SLIDE 101: Windows 98
+-----------------------------------
+
+GWBASIC
+SYSTEM to exit
+
